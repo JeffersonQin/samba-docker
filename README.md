@@ -5,7 +5,7 @@
 Step 1. Build image
 
 ```bash
-docker build -t samba .
+docker buildx build -t samba .
 ```
 
 Step 2. Configure
@@ -13,7 +13,7 @@ Step 2. Configure
 Change to the directory you want to mount as samba root directory (or you can replace the directory with `"${PWD}"`), and configure password. Also, the first `445` is the port the host to use.
 
 ```bash
-docker run -itd -p 445:445 -v "${PWD}":/root/sambashare --name samba-server samba && docker attach samba-server
+docker run -itd -p 445:445 -v "${PWD}":/root/sambashare --restart always --name samba-server samba && docker attach samba-server
 ```
 
 Step 3. Start container
